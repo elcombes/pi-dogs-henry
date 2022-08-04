@@ -1,0 +1,19 @@
+{
+  "name": "pi-dogs-main",
+  "version": "1.0.0",
+  "description": "![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "elcombes",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elcombes/pi-dogs-henry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elcombes/pi-dogs-henry/issues"
+  },
+  "homepage": "https://github.com/elcombes/pi-dogs-henry#readme"
+}
