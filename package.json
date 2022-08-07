@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/elcombes/pi-dogs-henry/issues"
   },
-  "homepage": "https://github.com/elcombes/pi-dogs-henry#readme"
+  "homepage": "https://github.com/elcombes/pi-dogs-henry#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
 }
