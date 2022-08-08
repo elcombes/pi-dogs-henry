@@ -37,6 +37,8 @@ const getAllDogs = async () => {
   return infoAll;
 };
 
+// GET
+
 const getAll = async (req, res, next) => {
   try {
     const name = req.query.name;
@@ -56,6 +58,44 @@ const getAll = async (req, res, next) => {
   }
 };
 
+const getId = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const dogsTotal = await getAllDogs();
+    if (id) {
+      let dogId = await dogsTotal.filter((el) => el.id == id);
+      dogId.length
+        ? res.status(200).json(dogId)
+        : res.status(404).send("No se encuentra esa raza, intenta con otro ID");
+    } else {
+      res.status(200).send(dogsTotal);
+    }
+  } catch (e) {
+    next(e);
+  }
+};
+
+// POST
+
+const postDog = async (req, res) => {
+  const dogCreate = req.body;
+
+  if (dogCreate) {
+    try {
+      let newdog = await Dog.create(dogCreate);
+      if (newdog)
+        res.json({ message: "Nueva raza creada correctamente", data: newdog });
+      else res.json({ message: "No se puedo crear una nueva raza" });
+    } catch (e) {
+      res.send(e);
+    }
+  } else {
+    res.json({ message: "No se reciben los datos del body" });
+  }
+};
+
 module.exports = {
   getAll,
+  postDog,
+  getId,
 };
