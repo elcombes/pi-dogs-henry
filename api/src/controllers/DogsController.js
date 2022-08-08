@@ -78,13 +78,16 @@ const getId = async (req, res, next) => {
 // POST
 
 const postDog = async (req, res) => {
-  const dogCreate = req.body;
+  // res.send('Hola soy el post')
 
-  if (dogCreate) {
+  const { dogNew } = req.body;
+
+  if (dogNew) {
     try {
-      let newdog = await Dog.create(dogCreate);
-      if (newdog)
-        res.json({ message: "Nueva raza creada correctamente", data: newdog });
+      let nuevo = await Dog.create(dogNew);
+
+      if (nuevo)
+        res.json({ message: "Nueva raza creada correctamente", data: nuevo });
       else res.json({ message: "No se puedo crear una nueva raza" });
     } catch (e) {
       res.send(e);
