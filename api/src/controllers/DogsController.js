@@ -1,4 +1,5 @@
 const axios = require("axios");
+require("dotenv").config();
 const { API_KEY } = process.env;
 const { Dog, Temperament } = require("../db");
 
@@ -11,7 +12,7 @@ const getApiInfo = async () => {
       id: el.id,
       name: el.name,
       temperament: el.temperament,
-      life_span: el.life_span,
+      weight: el.weight.metric,
       image: el.image.url,
     };
   });
@@ -31,9 +32,9 @@ const getDbInfo = async () => {
 };
 
 const getAllDogs = async () => {
-  const apiInfo = await getApiInfo();
   const dbInfo = await getDbInfo();
-  const infoAll = apiInfo.concat(dbInfo);
+  const apiInfo = await getApiInfo();
+  const infoAll = dbInfo.concat(apiInfo);
   return infoAll;
 };
 
@@ -77,18 +78,24 @@ const getId = async (req, res, next) => {
 
 // POST
 
+
 const postDog = async (req, res) => {
   // res.send('Hola soy el post')
 
-  const { dogNew } = req.body;
+  const { dogNew, temper } = req.body;
 
   if (dogNew) {
     try {
       let nuevo = await Dog.create(dogNew);
 
-      if (nuevo)
-        res.json({ message: "Nueva raza creada correctamente", data: nuevo });
+      let arr = []
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = await nuevo.addTemperament(temper[i]) // relacionando temperamentos
+      }
+
+      if (nuevo ) res.json({ message: "Nueva raza creada correctamente", data: nuevo });
       else res.json({ message: "No se puedo crear una nueva raza" });
+
     } catch (e) {
       res.send(e);
     }
@@ -96,6 +103,29 @@ const postDog = async (req, res) => {
     res.json({ message: "No se reciben los datos del body" });
   }
 };
+
+// const postDog = async (req, res, next) => {
+//   const { name, weight, height, life_span, image, temperament } = req.body;
+//   await Dog.create({
+//     name:"",
+//     weight:"",
+//     height:"",
+//     life_span,
+//     image,
+//   })
+//     .then((dogCreated) => {
+//       return dogCreated.setTemperament(temperament);
+//     })
+//     .then((newDog) => {
+//       return res.json({
+//         message: "Recipe created successfully",
+//       });
+//     })
+//     .catch((error) => next(error));
+// }
+
+
+
 
 module.exports = {
   getAll,

@@ -1,9 +1,12 @@
 import './App.css';
+import NavBar from './components/Cards/NavBar';
+import Cards from './components/Cards/Cards';
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Dogs</h1>
+      <NavBar />
+      <Cards />
     </div>
   );
 }

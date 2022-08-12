@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/elcombes/pi-dogs-henry#readme",
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "sequelize": "^6.21.3"
   }
 }
