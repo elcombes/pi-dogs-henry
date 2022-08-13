@@ -1,16 +1,8 @@
-.linkcard a {
-    text-decoration: none;
-    color: #000;
-}
-.linkcard a:visited {
-    text-decoration: none;
-    color: #000;
-}
 .infocontainer {
     background: #e2e2e2;
     margin: 25px 15px 0 15px;
     border-radius: 10px 10px 0 0;
-    min-height: 390px;
+    min-height: 415px;
 }
 .imgperfil {
     object-fit: cover;
@@ -22,12 +14,6 @@
 }
 .titledogs {
     font-size: 1.1rem;
-}
-.temperamenttittle, .weighttittle {
-    font-weight: 600;
-}
-.temperamentlist, .weightlist {
-    font-size: 0.8rem;
 }
 
 .infocardwidth {

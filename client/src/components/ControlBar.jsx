@@ -8,9 +8,7 @@ export default function ControlBar({ onSearch }) {
     return (
         <div className={styles.controlbar}>
             <div>
-                <SearchBar
-                    onSearch={onSearch}
-                />
+                <SearchBar onSearch={onSearch} />
             </div>
             <div>
                 <FilterBy />
