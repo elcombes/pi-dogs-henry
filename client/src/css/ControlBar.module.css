@@ -1,0 +1,22 @@
+.controlbar {
+    width: 1220px;
+    margin: 20px 0 0;
+    display: inline-flex;
+    text-align: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+}
+.filterby {
+    display: inline-flex;
+    text-align: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+}
+.sortby {
+    display: block;
+}
+.formsearch {
+    display: block
+}

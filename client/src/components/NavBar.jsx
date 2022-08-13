@@ -11,7 +11,7 @@ export default function NavBar() {
                 <div>
                     <ul className={styles.menulist}>
                         <li><Link to='/home'><span>Home</span></Link></li>
-                        <li>Create +</li>
+                        <li><Link to='/create'><span>Create +</span></Link></li>
                         <li><Link to='/about'><span>About me</span></Link></li>
                     </ul>
                 </div>

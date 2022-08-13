@@ -1,13 +1,23 @@
 import React from 'react';
 import styles from '../css/ControlBar.module.css';
+import SearchBar from './SearchBar.jsx';
+import SortBy from './SortBy.jsx'
+import FilterBy from './FilterBy.jsx'
 
-export default function ControlBar() {
+export default function ControlBar({ onSearch }) {
     return (
-        <div>
-            <div className={styles.controlbar}>
-                <p>Soy la barra de control</p>
+        <div className={styles.controlbar}>
+            <div>
+                <SearchBar
+                    onSearch={onSearch}
+                />
             </div>
-
+            <div>
+                <FilterBy />
+            </div>
+            <div>
+                <SortBy />
+            </div>
         </div>
     )
 }

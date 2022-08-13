@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import Cards from './components/Cards/Cards';
 import ControlBar from './components/ControlBar';
 import About from './components/About';
+import CreateNew from './components/Create';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path={"/"} component={NavBar} />
       <Route path={"/home"} component={ControlBar} />
       <Route path={"/home"} component={Cards} />
+      <Route path={"/create"} component={CreateNew} />
       <Route path={"/about"} component={About} />
     </div>
   );
