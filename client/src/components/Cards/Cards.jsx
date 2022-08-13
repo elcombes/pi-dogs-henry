@@ -19,10 +19,9 @@ export default function Cards() {
 
     return (
         <div>
-            <h2>Henry's Dogs List</h2>
             <div className={styles.cardcontainer}>
                 {estadoSoloDogs.length && estadoSoloDogs.map((edogs, i) =>
-                    <Card key={i} image={edogs.image} name={edogs.name} height={edogs.height} weight={edogs.weight} life_span={edogs.life_span} />
+                    <Card key={i} image={edogs.image} name={edogs.name} height={edogs.height} weight={edogs.weight} temperament={edogs.temperament}/>
                 )}
             </div>
         </div>

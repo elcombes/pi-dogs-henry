@@ -9,13 +9,14 @@ export default function Card({ image, name, temperament, weight, life_span }) {
             <div className={styles.infocontainer}>
                 <div><img className={styles.imgperfil} src={image} alt='doggypics' /></div>
                 <div><h2 className={styles.titledogs}>{name}</h2></div>
-                <div>
-                    <p>Temperament: {temperament}</p>
+                <div className={styles.infocardwidth}>
+                    <p>Temperament: </p>
+                    <span>{temperament}</span>
                     <p>Weight: {weight} kgs.</p>
                 </div>
                 <div><h3>{life_span}</h3></div>
-                <div className={styles.buttondetail}><h4>More Details</h4></div>
             </div>
+            <div className={styles.buttondetail}>+</div>
         </div>
     )
 }

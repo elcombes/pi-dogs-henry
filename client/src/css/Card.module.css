@@ -1,5 +1,8 @@
 .infocontainer {
-    margin: 15px;;
+    background: #e2e2e2;
+    margin: 25px 15px 0 15px;
+    border-radius: 10px 10px 0 0;
+    min-height: 415px;
 }
 .imgperfil {
     object-fit: cover;
@@ -7,7 +10,25 @@
     min-height: 175px;
     max-height: 175px;
     width: 260px;
+    border-radius: 10px 10px 0 0;
 }
 .titledogs {
     font-size: 1.1rem;
+}
+
+.infocardwidth {
+    max-width: 260px;
+}
+.buttondetail {
+    font-weight: bold;
+    font-size: 2rem;
+    color: white;
+    height: 50px;
+    max-width: 260px;
+    background: #3f3f3f;
+    cursor: pointer;
+    margin: 0 15px;
+}
+.buttondetail:hover {
+    background: #000;
 }
