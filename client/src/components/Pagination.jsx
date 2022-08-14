@@ -12,11 +12,11 @@ export default function Pagination({ dogsPerPage, estadoSoloDogs, pagination }) 
         <nav>
             <ul className={styles.pagination}>
                 {pageNumbers &&
-                    pageNumbers.map(number => (
-                        <a onClick={() => pagination(number)}>
-                            <li className={styles.paginationlist} key={number}>
-                             {number}
-                        </li> </a>
+                    pageNumbers.map((number, k) => (
+                        <a key={k} onClick={() => pagination(number, k)}>
+                            <li className={styles.paginationlist} >
+                                {number}
+                            </li> </a>
                     ))}
             </ul>
         </nav>

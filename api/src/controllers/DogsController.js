@@ -12,7 +12,7 @@ const getApiInfo = async () => {
       id: el.id,
       name: el.name,
       temperament: el.temperament,
-      weight: el.weight.metric,
+      weight: el.weight.metric, // devuelvo solo medida sistema métrico
       image: el.image.url,
     };
   });
@@ -78,54 +78,16 @@ const getId = async (req, res, next) => {
 
 // POST
 
-
 const postDog = async (req, res) => {
-  // res.send('Hola soy el post')
+  const { name, height, weight, life_span, image, temperament } = req.body;
 
-  const { dogNew, temper } = req.body;
-
-  if (dogNew) {
-    try {
-      let nuevo = await Dog.create(dogNew);
-
-      let arr = []
-      for (let i = 0; i < arr.length; i++) {
-        arr[i] = await nuevo.addTemperament(temper[i]) // relacionando temperamentos
-      }
-
-      if (nuevo ) res.json({ message: "Nueva raza creada correctamente", data: nuevo });
-      else res.json({ message: "No se puedo crear una nueva raza" });
-
-    } catch (e) {
-      res.send(e);
-    }
-  } else {
-    res.json({ message: "No se reciben los datos del body" });
-  }
+  let createDog = await Dog.create({ name, height, weight, life_span, image });
+  let temperamentDb = await Temperament.findAll({
+    where: { name: temperament },
+  });
+  createDog.addTemperament(temperamentDb);
+  res.send("Nueva raza creada correctamente");
 };
-
-// const postDog = async (req, res, next) => {
-//   const { name, weight, height, life_span, image, temperament } = req.body;
-//   await Dog.create({
-//     name:"",
-//     weight:"",
-//     height:"",
-//     life_span,
-//     image,
-//   })
-//     .then((dogCreated) => {
-//       return dogCreated.setTemperament(temperament);
-//     })
-//     .then((newDog) => {
-//       return res.json({
-//         message: "Recipe created successfully",
-//       });
-//     })
-//     .catch((error) => next(error));
-// }
-
-
-
 
 module.exports = {
   getAll,

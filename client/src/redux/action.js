@@ -14,16 +14,12 @@ export function obtener() {
   };
 }
 
-export function obtenerpornombre(name) {
+export function getdogsByName(nameDogs) {
   return async function (dispatch) {
-    try {
-      let aux = await axios.get(RUTA_GET + name);
-      return dispatch({
-        type: GET_BY_NAME,
-        payload: aux.data,
-      });
-    } catch (error) {
-      alert("Try another dog's name");
-    }
+    let aux = await axios.get(`http://localhost:3001/dogs?name=${nameDogs}`);
+    return dispatch({
+      type: GET_BY_NAME,
+      payload: aux.data,
+    });
   };
 }

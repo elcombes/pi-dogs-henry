@@ -1,21 +1,39 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getdogsByName } from "../redux/action";
 import styles from '../css/ControlBar.module.css';
 
-export default function SearchBar({onSearch}) {
-  const [city, setCity] = useState("");
+export default function Search() {
+  const dispatch = useDispatch();
+  const [nameDogs, setNameDogs] = useState("");
+
+
+  function handleInput(e) {
+    setNameDogs(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault(e);
+    if (nameDogs) {
+      dispatch(getdogsByName(nameDogs));
+      setNameDogs("");
+    }
+  }
+
   return (
-    <form className={styles.formsearch} onSubmit={(e) => {
-      e.preventDefault();
-      onSearch(city);
-      setCity('');
-    }}>
-      <input
-        type="text"
-        placeholder="Example: Akita..."
-        value={city}
-        onChange={e => setCity(e.target.value)}
-      />
-      <input type="submit" value="Search" />
-    </form>
+    <React.Fragment>
+      <form className={styles.formsearch} onSubmit={(e) => handleSubmit(e)}>
+        <input
+          className="input-search"
+          type="text"
+          placeholder="Search..."
+          value={nameDogs}
+          onChange={(e) => handleInput(e)}
+        />
+        <button className="btn-search" type="submit">
+          Search
+        </button>
+      </form>
+    </React.Fragment>
   );
 }

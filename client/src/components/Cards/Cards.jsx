@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-import Card from "./Card";
-import Pagination from "../Pagination";
 import { useDispatch, useSelector } from 'react-redux';
 import { obtener } from '../../redux/action'
-
-import styles from '../../css/Cards.module.css';
 import { useState } from "react";
-
+import Card from "./Card";
+import Pagination from "../Pagination";
+import styles from '../../css/Cards.module.css';
 
 export default function Cards() {
 
@@ -15,7 +13,7 @@ export default function Cards() {
 
     // Seteo Paginado
     const [currentPage, setCurrentPage] = useState(1)
-    const [dogsPerPage, setDogsPerPage] = useState(8) // de posición 0 a 7
+    const [dogsPerPage] = useState(8) // de posición 0 a 7
 
     const indexOfLastDog = currentPage * dogsPerPage // 8
     const indexOfFirstDog = indexOfLastDog - dogsPerPage // 0
@@ -34,11 +32,10 @@ export default function Cards() {
         <div>
             <div>
                 <Pagination
-                    dogsPerPage = {dogsPerPage}
-                    estadoSoloDogs = {estadoSoloDogs.length}
-                    pagination = {pagination}
+                    dogsPerPage={dogsPerPage}
+                    estadoSoloDogs={estadoSoloDogs.length}
+                    pagination={pagination}
                 />
-                
             </div>
             <div className={styles.cardcontainer}>
                 {currentDogs.length && currentDogs.map((edogs, i) =>
