@@ -15,6 +15,7 @@ const getApiInfo = async () => {
       weight: el.weight.metric, // devuelvo solo medida sistema métrico
       height: el.height.metric,
       image: el.image.url,
+      life_span: el.life_span
     };
   });
   return apiInfo;

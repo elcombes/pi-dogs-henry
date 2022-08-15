@@ -11,6 +11,7 @@
     margin: 25px 15px 0 15px;
     border-radius: 10px 10px 0 0;
     min-height: 390px;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 20%);
 }
 .imgperfil {
     object-fit: cover;

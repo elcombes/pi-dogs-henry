@@ -14,18 +14,18 @@ export default function Detail(props) {
     const dogdetail = useSelector((state) => state.detail)
 
     return (
-        <div>
+        <div className={styles.detailsheight}>
             { dogdetail.length > 0 ?
                 <div className={styles.infocontainer}>
                     <div><img className={styles.imgperfil} src={dogdetail[0].image} alt='doggypics' /></div>
                     <div><h2 className={styles.titledogs}>{dogdetail[0].name}</h2></div>
                     <div className={styles.infocardwidth}>
                         <p>Temperament: </p>
-                        <span>{dogdetail[0].temperament}</span>
+                        <span className={styles.temperamentdetails} >{dogdetail[0].temperament}</span>
                         <p>Height: {dogdetail[0].height} cm.</p>
                         <p>Weight: {dogdetail[0].weight} kgs.</p>
+                        <p>Life Span: {dogdetail[0].life_span}</p>
                     </div>
-                    <div><h3>{dogdetail[0].life_span}</h3></div>
                     <Link to='/home'><span>Back to Home</span></Link>
                 </div>
                 : <p>Loading...</p>

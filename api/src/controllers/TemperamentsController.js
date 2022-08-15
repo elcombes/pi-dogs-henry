@@ -27,13 +27,13 @@ const getTemperaments = async (req, res, next) => {
   // });
 
   Temperament.findAll()
-    .then((response) => {
-      if (response.length > 0) {
-        return res.json(response).status(200);
+    .then((temperaments) => {
+      if (temperaments.length > 0) {
+        return res.json(temperaments).status(200);
       } else {
         Temperament.bulkCreate(apiInfo)
-          .then((response) => {
-            return res.json(response);
+          .then((temperaments) => {
+            return res.json(temperaments);
           })
           .catch((error) => next(error));
       }

@@ -1,3 +1,6 @@
+.detailsheight {
+    min-height: 65vh;
+}
 .infocontainer {
     display: inline-block;
     background: #e2e2e2;
@@ -5,6 +8,7 @@
     border-radius: 10px 10px 0 0;
     min-height: 415px;
     max-width: 260px;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 20%);
 }
 .imgperfil {
     object-fit: cover;
@@ -33,4 +37,8 @@
 }
 .buttondetail:hover {
     background: #000;
+}
+.temperamentdetails {
+    padding: 0 1%;
+    font-size: 0.8rem;
 }

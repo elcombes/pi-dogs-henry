@@ -24,3 +24,11 @@
 .menulist li {
     margin: 0 10px;
 }
+
+.menulist li a:hover {
+    color: #222;
+}
+
+.menulist li a:visited {
+    color: white;
+}
