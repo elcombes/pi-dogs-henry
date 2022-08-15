@@ -18,7 +18,8 @@ function App() {
       <Route path={"/home"} component={Cards} />
       <Route path={"/create"} component={CreateNew} />
       <Route path={"/about"} component={About} />
-      <Route path={"/dogdetail"} component={DogDetail} />
+      {/* <Route path={"/city/:cityID"} render={() => <City onFilter={onFilter} />} */}
+      <Route path={"/dogs/:id"} component={DogDetail} />
       <Route path={"/"} component={Footer} />
     </div>
   );

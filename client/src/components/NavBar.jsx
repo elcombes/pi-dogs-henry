@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from '../css/NavBar.module.css';
+import Logo from '../img/logoapp.png'
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
     return (
         <div>
             <div className={styles.navbar}>
-                <div><img className={styles.logoimg} src="logoapp.png" alt="logoapp" /></div>
+                <div><img className={styles.logoimg} src={Logo} alt="logoapp" /></div>
                 <div><span className={styles.appTittle}>Henry Dogs</span></div>
                 <div>
                     <ul className={styles.menulist}>

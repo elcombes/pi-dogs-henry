@@ -1,8 +1,10 @@
 .infocontainer {
+    display: inline-block;
     background: #e2e2e2;
     margin: 25px 15px 0 15px;
     border-radius: 10px 10px 0 0;
     min-height: 415px;
+    max-width: 260px;
 }
 .imgperfil {
     object-fit: cover;

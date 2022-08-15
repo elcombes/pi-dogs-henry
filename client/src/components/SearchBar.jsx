@@ -7,7 +7,6 @@ export default function Search() {
   const dispatch = useDispatch();
   const [nameDogs, setNameDogs] = useState("");
 
-
   function handleInput(e) {
     setNameDogs(e.target.value);
   }
@@ -21,7 +20,7 @@ export default function Search() {
   }
 
   return (
-    <React.Fragment>
+    <div>
       <form className={styles.formsearch} onSubmit={(e) => handleSubmit(e)}>
         <input
           className="input-search"
@@ -34,6 +33,6 @@ export default function Search() {
           Search
         </button>
       </form>
-    </React.Fragment>
+    </div>
   );
 }

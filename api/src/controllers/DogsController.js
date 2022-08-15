@@ -13,6 +13,7 @@ const getApiInfo = async () => {
       name: el.name,
       temperament: el.temperament,
       weight: el.weight.metric, // devuelvo solo medida sistema métrico
+      height: el.height.metric,
       image: el.image.url,
     };
   });
@@ -25,7 +26,7 @@ const getDbInfo = async () => {
       model: Temperament,
       attributes: ["name"],
       through: {
-        attributes: [],
+        attributes: "",
       },
     },
   });

@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const GET_ALL = "GET ALL";
 export const GET_BY_NAME = "GET BY NAME";
+export const GET_DETAIL_ID = "GET DETAIL ID";
 export const RUTA_GET = "http://localhost:3001/dogs";
 
 export function obtener() {
@@ -22,4 +23,15 @@ export function getdogsByName(nameDogs) {
       payload: aux.data,
     });
   };
+}
+
+export const getDetail = (id) => {
+  return async function (dispatch) {
+      try {
+          const res = await axios.get('http://localhost:3001/dogs/' + id);
+          return dispatch({ type: GET_DETAIL_ID, payload: res.data });
+      } catch(error) {
+          console.error(error);
+      }
+  }
 }

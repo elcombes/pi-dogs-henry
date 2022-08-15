@@ -39,7 +39,7 @@ export default function Cards() {
             </div>
             <div className={styles.cardcontainer}>
                 {currentDogs.length && currentDogs.map((edogs, i) =>
-                    <Card key={i} image={edogs.image} name={edogs.name} height={edogs.height} weight={edogs.weight} temperament={edogs.temperament} />
+                    <Card key={i} id={edogs.id} image={edogs.image} name={edogs.name} height={edogs.height} weight={edogs.weight} temperament={edogs.temperament} />
                 )}
             </div>
         </div>
