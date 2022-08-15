@@ -1,10 +1,19 @@
-import { GET_ALL, GET_BY_NAME, GET_DETAIL_ID, GET_TEMPERAMENTS, FILTER_BY_VALUE, POST_DOGS } from "./action";
+import {
+  GET_ALL,
+  GET_BY_NAME,
+  GET_DETAIL_ID,
+  GET_TEMPERAMENTS,
+  FILTER_BY_VALUE,
+  POST_DOGS,
+  ORDER_BY_NAME,
+  ORDER_BY_WEIGHT
+} from "./action";
 
 const initialState = {
   dogs: [],
   totaldogs: [],
   detail: [],
-  temperaments: []
+  temperaments: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -31,7 +40,7 @@ export default function rootReducer(state = initialState, action) {
         detail: action.payload,
       };
     case FILTER_BY_VALUE:
-      const alldogs = state.totaldogs
+      const alldogs = state.totaldogs;
       const statusFiltered =
         action.payload === "All"
           ? alldogs
@@ -51,6 +60,36 @@ export default function rootReducer(state = initialState, action) {
     case POST_DOGS:
       return {
         ...state,
+      };
+    case ORDER_BY_NAME:
+      let sortedArr =
+        action.payload === "sort-a-z"
+          ? state.dogs.sort(function (a, b) {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+              else return -1;
+            })
+          : state.dogs.sort(function (a, b) {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+              else return 1;
+            });
+      return {
+        ...state,
+        dogs: sortedArr,
+      };
+    case ORDER_BY_WEIGHT:
+      let sortedAr =
+        action.payload === "sort-weight-asc"
+          ? state.dogs.sort(function (a, b) {
+              if (a.weight > b.weight) return 1;
+              else return -1;
+            })
+          : state.dogs.sort(function (a, b) {
+              if (a.weight > b.weight) return -1;
+              else return 1;
+            });
+      return {
+        ...state,
+        dogs: sortedAr,
       };
     default:
       return state;

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { obtener } from '../../redux/action'
+import { obtener, orderByName, orderByWeight } from '../../redux/action'
 import { useState } from "react";
 import Card from "./Card";
 import Pagination from "../Pagination";
@@ -12,6 +12,7 @@ export default function Cards() {
     const estadoSoloDogs = useSelector(state => state.dogs)
 
     // Seteo Paginado
+    const [, setOrder] = useState("");
     const [currentPage, setCurrentPage] = useState(1)
     const [dogsPerPage] = useState(8) // de posición 0 a 7
 
@@ -24,12 +25,46 @@ export default function Cards() {
     }
     // Fin seteo paginado
 
+    function handleSort(e) {
+        e.preventDefault();
+        dispatch(orderByName(e.target.value));
+        setCurrentPage(1);
+        setOrder(`Ordenado ${e.target.value}`);
+        console.log(setCurrentPage(1));
+    }
+    function handleSortScore(e) {
+        e.preventDefault();
+        dispatch(orderByWeight(e.target.value));
+        setCurrentPage(1);
+        setOrder(`Ordenado ${e.target.value}`);
+    }
+
     useEffect(() => {           // useEffect emula con una fc de callback component amount
         dispatch(obtener())
     }, [dispatch])
 
     return (
         <div>
+            <div className={styles.sortby}>
+                <select
+                    name="sortDogs"
+                    id="sortDogs"
+                    onChange={(e) => handleSort(e)}
+                >
+                    <option value="">Sort elements - Alphabetically</option>
+                    <option value="sort-a-z">A to Z</option>
+                    <option value="sort-z-a">Z to A</option>
+                </select>
+                <select
+                    name="sortDogs"
+                    id="sortDogs"
+                    onChange={(e) => handleSortScore(e)}
+                >
+                    <option value="">Sort elements - Weight</option>
+                    <option value="sort-weight-asc">Min- Max</option>
+                    <option value="sort-weight-desc">Max- Min</option>
+                </select>
+            </div>
             <div>
                 <Pagination
                     dogsPerPage={dogsPerPage}

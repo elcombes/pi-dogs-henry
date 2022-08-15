@@ -6,6 +6,8 @@ export const GET_DETAIL_ID = "GET DETAIL ID";
 export const GET_TEMPERAMENTS = "GET TEMPERAMENTS";
 export const FILTER_BY_VALUE = "FILTER_BY_VALUE";
 export const POST_DOGS = "POST DOGS";
+export const ORDER_BY_NAME = "ORDER BY NAME"
+export const ORDER_BY_WEIGHT = "ORDER BY WEIGHT"
 export const RUTA_GET = "http://localhost:3001/dogs";
 
 export function obtener() {
@@ -64,4 +66,22 @@ export function postDog(payload) {
     const response = await axios.post("http://localhost:3001/dogs", payload);
     return response;
   };
+}
+
+// ORDER ACTIONS
+
+export function orderByName(payload){
+  return{
+    type: ORDER_BY_NAME,
+    payload
+  }
+}
+
+
+
+export function orderByWeight(payload){
+  return{
+    type: ORDER_BY_WEIGHT,
+    payload
+  }
 }

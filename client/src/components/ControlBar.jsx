@@ -11,10 +11,10 @@ export default function ControlBar({ onSearch }) {
                 <SearchBar onSearch={onSearch} />
             </div>
             <div>
-                <FilterBy />
+                
             </div>
             <div>
-                <SortBy />
+                <FilterBy />
             </div>
         </div>
     )
