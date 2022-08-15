@@ -42,6 +42,13 @@ export default function Cards() {
                     <Card key={i} id={edogs.id} image={edogs.image} name={edogs.name} height={edogs.height} weight={edogs.weight} temperament={edogs.temperament} />
                 )}
             </div>
+            <div>
+                <Pagination
+                    dogsPerPage={dogsPerPage}
+                    estadoSoloDogs={estadoSoloDogs.length}
+                    pagination={pagination}
+                />
+            </div>
         </div>
     )
 }

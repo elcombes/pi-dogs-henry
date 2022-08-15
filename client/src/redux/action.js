@@ -4,6 +4,7 @@ export const GET_ALL = "GET ALL";
 export const GET_BY_NAME = "GET BY NAME";
 export const GET_DETAIL_ID = "GET DETAIL ID";
 export const GET_TEMPERAMENTS = "GET TEMPERAMENTS";
+export const FILTER_BY_VALUE = "FILTER_BY_VALUE";
 export const POST_DOGS = "POST DOGS";
 export const RUTA_GET = "http://localhost:3001/dogs";
 
@@ -37,6 +38,14 @@ export const getDetail = (id) => {
     }
   };
 };
+
+export function filterTemperaments(payload){
+  console.log(payload);
+  return{
+      type: FILTER_BY_VALUE,
+      payload
+  }
+}
 
 export function getTemperaments() {
   return async function (dispatch) {

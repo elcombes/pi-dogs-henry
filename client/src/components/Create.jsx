@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postDog, getTemperaments } from '../redux/action'
+import styles from '../css/Create.module.css'
 
 export default function CreateNewDog() {
     const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function CreateNewDog() {
         weight: "",
         height: "",
         life_span: "",
-        image: "",
+        image: "https://cdn2.thedogapi.com/images/HkXWNl9E7.jpg",
         temperament: []
     })
 
@@ -30,38 +31,54 @@ export default function CreateNewDog() {
         })
     }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log(input)
+        dispatch(postDog(input))
+        alert("Created suscessfully")
+        setInput({
+            name: "",
+            weight: "",
+            height: "",
+            life_span: "",
+            image: "",
+            temperament: []
+        })
+    }
+
     useEffect(() => {
         dispatch(getTemperaments());
     }, [])
 
     return (
-        <div>
-            <p>Acá se crea el nuevo perrito</p>
-            <form>
-                <div>
-                    <input type="text" placeholder='Name' value={input.name} name='name' />
+        <div className={styles.createform}>
+            <h2>Complete the form to add a new breed of dog</h2>
+            <form onSubmit={(e)=>handleSubmit(e)}>
+                <div className={styles.inputformcreate}>
+                    <input type="text" placeholder='Name' value={input.name} name='name' onChange={(e)=>handleChange(e)}/>
                 </div>
                 <div>
-                    <div>
-                        <input type="number" placeholder='Min height' value={input.height} name='minheight' />
+                    <div className={styles.inputformcreate}>
+                        <input type="number" placeholder='Min height' value={input.height} name='height' onChange={(e)=>handleChange(e)}/>
                     </div>
-                    <div>
-                        <input type="number" placeholder='Max height' value={input.height} name='maxheight' />
-                    </div>
+                    {/* <div>
+                        <input type="number" placeholder='Max height' value={input.height} name='maxheight' onChange={(e)=>handleChange(e)}/>
+                    </div> */}
                 </div>
                 <div>
-                    <div>
-                        <input type="number" placeholder='Min weight' value={input.weight} name='minweight' />
+                    <div className={styles.inputformcreate}>
+                        <input type="number" placeholder='Min weight' value={input.weight} name='weight' onChange={(e)=>handleChange(e)}/>
                     </div>
-                    <div>
-                        <input type="number" placeholder='Max weight' value={input.weight} name='maxweight' />
-                    </div>
+                    {/* <div>
+                        <input type="number" placeholder='Max weight' value={input.weight} name='maxweight' onChange={(e)=>handleChange(e)}/>
+                    </div> */}
                 </div>
-                <div>
-                    <input type="text" placeholder='Life Span' value={input.life_span} name='life_span' />
+                <div className={styles.inputformcreate}>
+                    <input type="text" placeholder='Life Span' value={input.life_span} name='life_span' onChange={(e)=>handleChange(e)}/>
                 </div>
-                <div>
-                    <select onChange={(e)=> handleSelect(e)}>
+                <div className={styles.inputformcreate}>
+                    <select onChange={(e) => handleSelect(e)}>
+                        <option disabled selected>Select temperament</option>
                         {temperaments.map((tem) => {
                             <option value={tem.name}>{tem.name}</option>
                         })}
