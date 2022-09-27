@@ -13,13 +13,13 @@ function App() {
   return (
     <div className="App">
       <Route exact path={"/"} component={Landing} />
-      <Route path={"/"} component={NavBar} />
+      <Route path={["/home", "/create","/about","/dogs/:id"]} component={NavBar} />
       <Route path={"/home"} component={ControlBar} />
       <Route path={"/home"} component={Cards} />
       <Route path={"/create"} component={CreateNew} />
       <Route path={"/about"} component={About} />
       <Route path={"/dogs/:id"} component={DogDetail} />
-      <Route path={"/"} component={Footer} />
+      <Route path={["/home", "/create","/about","/dogs/:id"]} component={Footer} />
     </div>
   );
 }

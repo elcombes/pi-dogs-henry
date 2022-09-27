@@ -2,58 +2,40 @@ const axios = require("axios");
 const { API_KEY } = process.env;
 const { Temperament } = require("../db");
 
-let apiInfo = [
-  {name: 'Stubborn'},
-  {name: 'Curious'},
-  {name: 'Playful'},
-  {name: 'Adventurous'},
-  {name: 'Active'},
-  {name: 'Fun - loving'},
-  {name: 'Aloof'},
-  {name: 'Clownish'},
-  {name: 'Dignified'},
-  {name: 'Independent'},
-  {name: 'Happy'},
-];
 
-const getTemperaments = async (req, res, next) => {
+const getOnlyTemperaments = async () => {
+  const apiUrl = await axios.get(
+    `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
+  );
 
-  // const apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
+  let data = apiUrl.data.map((d) =>
+    d.temperament ? d.temperament.split(", ") : []
+  );
 
-  // const apiInfo = await apiUrl.data.map((el) => {
-  //   return {
-  //     temperament: el.temperament,
-  //   };
-  // });
+  let temperamentArr = [];
 
-  Temperament.findAll()
-    .then((temperaments) => {
-      if (temperaments.length > 0) {
-        return res.json(temperaments).status(200);
-      } else {
-        Temperament.bulkCreate(apiInfo)
-          .then((temperaments) => {
-            return res.json(temperaments);
-          })
-          .catch((error) => next(error));
+  for (let i = 0; i < data.length; i++) {
+    for (let j = 0; j < data[i].length; j++) {
+      if (temperamentArr.indexOf(data[i][j]) === -1) {
+        temperamentArr.push(data[i][j]);
       }
-    })
-    .catch((error) => next(error));
+    }
+  }
+  return temperamentArr.sort();
 };
 
-// const temperamentsAlone = apiInfo.split(', ')
+const getTemperaments = async (req, res) => {
+  const data = await getOnlyTemperaments();
 
-// axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
-//   .then((temperaments) => {
-//     let dbTemperaments = temperaments.data.map((el) => {
-//       return { id: el.id, name: el.temperament };
-//     });
+  data.forEach((el) => {
+    Temperament.findOrCreate({
+      where: { name: el },
+    });
+  });
 
-//     dbTemperaments.forEach((e) => {
-//       Temperament.findOrCreate({ where: { id: e.id, name: e.name } });
-//     });
-//   })
-//   .catch((e) => console.log(e));
+  const allTemperaments = await Temperament.findAll();
+  res.status(200).json(allTemperaments);
+};
 
 module.exports = {
   getTemperaments,

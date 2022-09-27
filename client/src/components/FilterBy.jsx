@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../css/ControlBar.module.css';
-import { filterTemperaments } from "../redux/action";
-import { useDispatch } from "react-redux";
+import { filterTemperaments, getTemperaments } from "../redux/action";
 
 export default function FilterBy() {
 
@@ -12,10 +12,33 @@ export default function FilterBy() {
         dispatch(filterTemperaments(e.target.value));
     }
 
+    const [input, setInput] = useState({
+        temperaments:[]
+    })
+
+    const temperaments = useSelector((state) => state.temperaments);
+    function handleSelect(e) {
+        setInput({
+            ...input,
+            temperament: [...input.temperament, e.target.value]
+        })
+    }
+
+
+    useEffect(() => {
+        dispatch(getTemperaments());
+    }, [])
+
     return (
         <div className={styles.filterby}>
             <div>
-                <select name="filterdogs" id="filterdogs" onChange={(e) => handleFilterValue(e)}>
+                <select onChange={(e) => handleSelect(e)}>
+                    <option disabled selected>Select temperament</option>
+                    {temperaments.map((tem) => (
+                        <option value={tem.name}>{tem.name}</option>
+                    ))}
+                </select>
+                {/* <select name="filterdogs" id="filterdogs" onChange={(e) => handleFilterValue(e)}>
                     <option disabled selected>Filter by temperament</option>
                     <option value="All">View all temperaments</option>
                     <option value="Stubborn">Stubborn</option>
@@ -28,7 +51,7 @@ export default function FilterBy() {
                     <option value="Dignified">Dignified</option>
                     <option value="Independent">Independent</option>
                     <option value="Happy">Happy</option>
-                </select>
+                </select> */}
             </div>
             {/* <div>
                 <select name="filterapi" id="filterapi">
