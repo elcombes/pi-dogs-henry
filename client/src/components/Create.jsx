@@ -78,9 +78,9 @@ export default function CreateNewDog() {
                 </div>
                 <div className={styles.inputformcreate}>
                     <select onChange={(e) => handleSelect(e)}>
-                        <option disabled selected>Select temperament</option>
+                        <option disabled value='default' selected>Select temperament</option>
                         {temperaments.map((tem) => (
-                            <option value={tem.name}>{tem.name}</option>
+                            <option key={tem.id} value={tem.name}>{tem.name}</option>
                         ))}
                     </select>
                 </div>

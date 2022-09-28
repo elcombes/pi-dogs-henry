@@ -23,6 +23,7 @@
 }
 .titledogs {
     font-size: 1.1rem;
+    max-width: 260px;
 }
 .temperamenttittle, .weighttittle {
     font-weight: 600;

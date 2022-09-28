@@ -8,7 +8,12 @@
     align-items: center;
 }
 
+.blocknav {
+  min-width: 270px;
+}
+
 .logoimg {
+    float: left;
     width: 40px;
 }
 

@@ -6,7 +6,7 @@ import {
   FILTER_BY_VALUE,
   POST_DOGS,
   ORDER_BY_NAME,
-  ORDER_BY_WEIGHT
+  ORDER_BY_WEIGHT,
 } from "./action";
 
 const initialState = {
@@ -44,15 +44,11 @@ export default function rootReducer(state = initialState, action) {
       const statusFiltered =
         action.payload === "All"
           ? alldogs
-          : alldogs.filter((d) => {
-              if (d.temperament.length) {
-                if (d.temperaments.find((t) => t.name === action.payload))
-                  return d;
-                if (d.temperaments.find((te) => te === action.payload))
-                  return d;
-              }
-              return null;
-            });
+          : alldogs.filter(
+            (el) =>
+              el.temperament &&
+              el.temperament.split(", ").find((e) => e === action.payload)
+          );
       return {
         ...state,
         dogs: statusFiltered,

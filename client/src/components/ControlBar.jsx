@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from '../css/ControlBar.module.css';
 import SearchBar from './SearchBar.jsx';
-// import SortBy from './SortBy.jsx'
-import FilterBy from './FilterBy.jsx'
+
 
 export default function ControlBar({ onSearch }) {
     return (
@@ -13,9 +12,7 @@ export default function ControlBar({ onSearch }) {
             <div>
                 
             </div>
-            <div>
-                <FilterBy />
-            </div>
+            
         </div>
     )
 }

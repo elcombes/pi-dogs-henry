@@ -1,3 +1,7 @@
+.cardscontainer {
+  min-height: 90vh;
+}
+
 .cardcontainer {
     max-width: 1220px;
     display: inline-flex;
@@ -7,6 +11,10 @@
 
 nav {
     margin-top: 20px;
+}
+
+.sortby {
+  display: inline-flex;
 }
 
 ul.pagination {
@@ -24,7 +32,7 @@ li.paginationlist {
     transition: all 0.3s ease;
 }
 li.paginationlist:hover {
-    background-color: #222;
+    background-color: #6a6a6a;
     color: white;
     transition: all 0.3s ease;
 }

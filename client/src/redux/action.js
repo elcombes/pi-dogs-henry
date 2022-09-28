@@ -42,7 +42,7 @@ export const getDetail = (id) => {
 };
 
 export function filterTemperaments(payload){
-  console.log(payload);
+  console.log('estoy en actions', payload);
   return{
       type: FILTER_BY_VALUE,
       payload

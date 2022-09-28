@@ -23,13 +23,13 @@ export default function Search() {
     <div>
       <form className={styles.formsearch} onSubmit={(e) => handleSubmit(e)}>
         <input
-          className="input-search"
+          className={`input-search ${styles.searchinput}`}
           type="text"
           placeholder="Search..."
           value={nameDogs}
           onChange={(e) => handleInput(e)}
         />
-        <button className="btn-search" type="submit">
+        <button className={`btn-search ${styles.searchbutton}`} type="submit">
           Search
         </button>
       </form>
